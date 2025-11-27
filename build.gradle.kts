@@ -27,7 +27,7 @@ dependencies {
     compileOnly("me.clip:placeholderapi:2.11.6")
     implementation("com.xyrisdev:XLibrary:1.0.0")
     implementation(platform("com.intellectualsites.bom:bom-newest:1.52"))
-    implementation("net.wesjd:anvilgui:1.10.4-SNAPSHOT")
+    implementation("net.wesjd:anvilgui:1.10.10-SNAPSHOT")
 }
 
 tasks.withType<JavaCompile> {

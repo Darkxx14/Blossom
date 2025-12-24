@@ -46,10 +46,6 @@ public class AsyncWorldEditUtil {
         execute(region, () -> {
             final long start = System.currentTimeMillis();
 
-            final Path path = RegenerationPlugin.instance().getDataFolder().toPath()
-                    .resolve("schematics")
-                    .resolve(region.getName() + FILE_EXTENSION);
-
             try {
                 final Location min = region.getMin(), max = region.getMax();
                 final com.sk89q.worldedit.world.World world = BukkitAdapter.adapt(min.getWorld());
@@ -69,6 +65,10 @@ public class AsyncWorldEditUtil {
                 FaweAPI.getTaskManager().async(() -> {
                     try {
                         Operations.complete(extentCopy);
+
+                        final Path path = RegenerationPlugin.instance().getDataFolder().toPath()
+                                .resolve("schematics")
+                                .resolve(region.getName() + FILE_EXTENSION);
 
                         Files.createDirectories(path.getParent());
                         try (ClipboardWriter writer = clipboardFormat.getWriter(Files.newOutputStream(path))) {

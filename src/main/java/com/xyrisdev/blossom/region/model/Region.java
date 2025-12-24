@@ -2,7 +2,10 @@ package com.xyrisdev.blossom.region.model;
 
 import com.xyrisdev.blossom.RegenerationPlugin;
 import com.xyrisdev.blossom.util.AsyncWorldEditUtil;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Location;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -32,7 +35,7 @@ public class Region {
 
 	public boolean schematic() {
 		Path schematicPath = Paths.get(
-				RegenerationPlugin.getInstance().getDataFolder().getAbsolutePath(),
+                RegenerationPlugin.instance().getDataFolder().getAbsolutePath(),
 				"schematics",
 				name + AsyncWorldEditUtil.FILE_EXTENSION
 		);
@@ -41,13 +44,13 @@ public class Region {
 
 	public void renameSchematic(@NotNull String newName) {
 		final Path old = Paths.get(
-				RegenerationPlugin.getInstance().getDataFolder().getAbsolutePath(),
+                RegenerationPlugin.instance().getDataFolder().getAbsolutePath(),
 				"schematics",
 				name + AsyncWorldEditUtil.FILE_EXTENSION
 		);
 
 		Path newPath = Paths.get(
-				RegenerationPlugin.getInstance().getDataFolder().getAbsolutePath(),
+                RegenerationPlugin.instance().getDataFolder().getAbsolutePath(),
 				"schematics",
 				newName + AsyncWorldEditUtil.FILE_EXTENSION
 		);

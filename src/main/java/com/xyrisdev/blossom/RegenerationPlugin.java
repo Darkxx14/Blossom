@@ -15,14 +15,19 @@ import com.xyrisdev.library.logger.XLogger;
 import com.xyrisdev.library.scheduler.XScheduler;
 import com.xyrisdev.library.scheduler.scheduling.schedulers.TaskScheduler;
 import lombok.Getter;
+import lombok.experimental.Accessors;
 import org.jetbrains.annotations.NotNull;
 
+@Accessors(fluent = true)
 public final class RegenerationPlugin extends AbstractPlugin {
 
 	@Getter
 	private static RegenerationPlugin instance;
 
+    @Getter
 	private TaskScheduler scheduler;
+
+    @Getter
 	private CachableConfiguration config;
 
 	@Override
@@ -58,14 +63,6 @@ public final class RegenerationPlugin extends AbstractPlugin {
 				.disable(FeatureFlags.WorldGuard.REGION)
 				.disable(FeatureFlags.Game.CRYSTAL)
 				.disable(FeatureFlags.Game.ANCHOR);
-	}
-
-	public @NotNull CachableConfiguration config() {
-		return config;
-	}
-
-	public @NotNull TaskScheduler scheduler() {
-		return scheduler;
 	}
 
 	public void debug(@NotNull String message) {

@@ -23,7 +23,7 @@ public class ReloadSubCommand implements RegisterableSubCommand {
 			sender.sendRichMessage("<gray>→ The plugin's configuration has been reloaded.</gray>");
 			sender.sendRichMessage(" ");
 
-			RegenerationPlugin.getInstance().config().reload();
+            RegenerationPlugin.instance().config().reload();
 		});
 	}
 }

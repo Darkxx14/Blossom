@@ -1,18 +1,17 @@
 package com.xyrisdev.blossom.util;
 
+import com.xyrisdev.blossom.RegenerationPlugin;
 import com.xyrisdev.library.config.CachableConfiguration;
+import lombok.experimental.UtilityClass;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.entity.Player;
 
-import com.xyrisdev.blossom.RegenerationPlugin;
-
+@UtilityClass
 public final class SoundUtil {
 
-	private SoundUtil() {}
-
 	public static void play(Player player, String path) {
-		final CachableConfiguration config = RegenerationPlugin.getInstance().config();
+        final CachableConfiguration config = RegenerationPlugin.instance().config();
 
 		final Boolean enabled = config.get(path + ".enabled");
 		if (enabled == null || !enabled) return;

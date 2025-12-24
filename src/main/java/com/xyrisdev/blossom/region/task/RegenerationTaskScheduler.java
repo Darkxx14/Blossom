@@ -9,8 +9,6 @@ import com.xyrisdev.library.location.XLocation;
 import com.xyrisdev.library.message.XMessageBuilder;
 import com.xyrisdev.library.scheduler.XRunnable;
 import com.xyrisdev.library.scheduler.scheduling.tasks.MyScheduledTask;
-import net.kyori.adventure.key.Key;
-import net.kyori.adventure.sound.Sound;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
@@ -49,13 +47,13 @@ public class RegenerationTaskScheduler {
 
 				XLocation.players(region.getMin(), region.getMax()).forEach(player -> {
 					// Teleport all the player's to the top if enabled
-					if (RegenerationPlugin.getInstance().getConfig().getBoolean("regeneration.teleport_to_top")) {
+                    if (RegenerationPlugin.instance().getConfig().getBoolean("regeneration.teleport_to_top")) {
 						XLocation.top(region.getMin(), region.getMax(), region.getCenter());
 					}
 
 					// Broadcast the regeneration message if enabled
-					if (RegenerationPlugin.getInstance().getConfig().getBoolean("broadcast.regenerated")) {
-						XMessageBuilder.of(player, RegenerationPlugin.getInstance().getConfig())
+                    if (RegenerationPlugin.instance().getConfig().getBoolean("broadcast.regenerated")) {
+                        XMessageBuilder.of(player, RegenerationPlugin.instance().getConfig())
 								.id("regenerated")
 								.placeholders("name", RegionManager.instance().region(name).getDisplayName())
 								.send();
@@ -64,16 +62,16 @@ public class RegenerationTaskScheduler {
 					}
 				});
 
-				if (RegenerationPlugin.getInstance().getConfig().getBoolean("broadcast.regeneration_warning")) {
+                if (RegenerationPlugin.instance().getConfig().getBoolean("broadcast.regeneration_warning")) {
 					warn(name, intervalMs, region);
 				}
 			}
-		}.runTaskTimer(RegenerationPlugin.getInstance(), intervalTicks, intervalTicks);
+        }.runTaskTimerAsynchronously(RegenerationPlugin.instance(), intervalTicks, intervalTicks);
 
 		times.put(name, System.currentTimeMillis());
 		tasks.put(name, task);
 
-		if (RegenerationPlugin.getInstance().getConfig().getBoolean("broadcast.regeneration_warning")) {
+        if (RegenerationPlugin.instance().getConfig().getBoolean("broadcast.regeneration_warning")) {
 			warn(name, intervalMs, region);
 		}
 	}
@@ -107,7 +105,7 @@ public class RegenerationTaskScheduler {
 							(seconds >= 60) ? (seconds / 60) + "m" : seconds + "s";
 
 					XLocation.players(region.getMin(), region.getMax()).forEach(player -> {
-						XMessageBuilder.of(player, RegenerationPlugin.getInstance().getConfig())
+                        XMessageBuilder.of(player, RegenerationPlugin.instance().getConfig())
 								.id("regeneration_warning")
 								.placeholders("name", RegionManager.instance().region(name).getDisplayName(), "time", timeString)
 								.send();
@@ -115,7 +113,7 @@ public class RegenerationTaskScheduler {
 						SoundUtil.play(player, "sounds.regeneration_warning");
 					});
 				}
-			}.runTaskLater(RegenerationPlugin.getInstance(), (intervalMs - warningMs) / 50));
+            }.runTaskLaterAsynchronously(RegenerationPlugin.instance(), (intervalMs - warningMs) / 50));
 		}
 
 		warnings.put(name, newWarnings);

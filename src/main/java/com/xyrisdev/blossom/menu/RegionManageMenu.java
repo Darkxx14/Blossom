@@ -36,7 +36,7 @@ public class RegionManageMenu {
 
 		menu.item(10, nameStack, event -> {
 			Player player = (Player) event.getWhoClicked();
-			AnvilMenu.of(RegenerationPlugin.getInstance())
+            AnvilMenu.of(RegenerationPlugin.instance())
 					.title("Renaming " + region.getName())
 					.text("Enter new name")
 					.click((slot, state) -> {
@@ -70,7 +70,7 @@ public class RegionManageMenu {
 
 		menu.item(11, displayStack, event -> {
 			Player player = (Player) event.getWhoClicked();
-			AnvilMenu.of(RegenerationPlugin.getInstance())
+            AnvilMenu.of(RegenerationPlugin.instance())
 					.title("Editing display name of " + region.getName())
 					.text("Enter new display name")
 					.click((slot, state) -> {

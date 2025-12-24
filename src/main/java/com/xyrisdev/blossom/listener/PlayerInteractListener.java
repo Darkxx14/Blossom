@@ -27,13 +27,13 @@ public class PlayerInteractListener implements Listener {
 		final Player player = event.getPlayer();
 		final UUID uuid = player.getUniqueId();
 
+        final Action action = event.getAction();
+
+        if (!(action == Action.LEFT_CLICK_BLOCK || action == Action.LEFT_CLICK_AIR && player.isSneaking())) {
+            return;
+        }
+
 		if (!RegionDefineMenu.getSelections().containsKey(uuid)) {
-			return;
-		}
-
-		final Action action = event.getAction();
-
-		if (!(action == Action.LEFT_CLICK_BLOCK || action == Action.LEFT_CLICK_AIR && player.isSneaking())) {
 			return;
 		}
 
@@ -54,7 +54,7 @@ public class PlayerInteractListener implements Listener {
 				Title.Times.times(Duration.ofSeconds(1), Duration.ofSeconds(2), Duration.ofSeconds(1))
 		));
 
-		RegenerationPlugin.getInstance().scheduler().runTaskLater(() ->
+        RegenerationPlugin.instance().scheduler().runTaskLater(() ->
 				RegionDefineMenu.define(region).open(player), 10L);
 	}
 }

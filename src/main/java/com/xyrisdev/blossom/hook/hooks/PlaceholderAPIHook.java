@@ -24,17 +24,17 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
 
 	@Override
 	public @NotNull String getIdentifier() {
-		return RegenerationPlugin.getInstance().getPluginMeta().getName().toLowerCase();
+        return RegenerationPlugin.instance().getPluginMeta().getName().toLowerCase();
 	}
 
 	@Override
 	public @NotNull String getAuthor() {
-		return RegenerationPlugin.getInstance().getPluginMeta().getAuthors().stream().findFirst().toString();
+        return RegenerationPlugin.instance().getPluginMeta().getAuthors().stream().findFirst().toString();
 	}
 
 	@Override
 	public @NotNull String getVersion() {
-		return RegenerationPlugin.getInstance().getPluginMeta().getVersion();
+        return RegenerationPlugin.instance().getPluginMeta().getVersion();
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
 			final String regionName = identifier.substring("interval_".length());
 			final long interval = RegenerationTaskScheduler.left(regionName);
 
-			return TimeFormatter.format(interval, TimeFormat.of(RegenerationPlugin.getInstance().config().getString("placeholders.interval.format")));
+            return TimeFormatter.format(interval, TimeFormat.of(RegenerationPlugin.instance().config().getString("placeholders.interval.format")));
 		}
 
 		return "";

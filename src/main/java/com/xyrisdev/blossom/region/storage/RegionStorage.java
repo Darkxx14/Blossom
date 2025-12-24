@@ -4,7 +4,6 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.xyrisdev.blossom.RegenerationPlugin;
-import com.xyrisdev.blossom.region.RegionManager;
 import com.xyrisdev.blossom.region.model.Region;
 import com.xyrisdev.blossom.util.adapter.LocationAdapter;
 import com.xyrisdev.library.logger.XLogger;
@@ -33,7 +32,7 @@ public class RegionStorage {
 	private final ExecutorService executor;
 
 	public RegionStorage() {
-		this.path = RegenerationPlugin.getInstance().getDataFolder().toPath().resolve("data");
+        this.path = RegenerationPlugin.instance().getDataFolder().toPath().resolve("data");
 		this.executor = Executors.newFixedThreadPool(4, new ThreadFactoryBuilder()
 				.setNameFormat("Blossom IO Thread %d")
 				.build());

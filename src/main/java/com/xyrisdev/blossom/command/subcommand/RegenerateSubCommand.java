@@ -37,13 +37,13 @@ public class RegenerateSubCommand implements RegisterableSubCommand {
 
 					XLocation.players(region.getMin(), region.getMax()).forEach(player -> {
 						// Teleport all the player's to the top if enabled
-						if (RegenerationPlugin.getInstance().getConfig().getBoolean("regeneration.teleport_to_top")) {
+                        if (RegenerationPlugin.instance().getConfig().getBoolean("regeneration.teleport_to_top")) {
 							XLocation.top(region.getMin(), region.getMax(), region.getCenter());
 						}
 
 						// Broadcast the regeneration message if enabled
-						if (RegenerationPlugin.getInstance().getConfig().getBoolean("broadcast.regenerated")) {
-							XMessageBuilder.of(player, RegenerationPlugin.getInstance().getConfig())
+                        if (RegenerationPlugin.instance().getConfig().getBoolean("broadcast.regenerated")) {
+                            XMessageBuilder.of(player, RegenerationPlugin.instance().getConfig())
 									.id("regenerated")
 									.placeholders("name", RegionManager.instance().region(region.getName()).getDisplayName())
 									.send();

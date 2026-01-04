@@ -1,6 +1,8 @@
 ![Blossom](assets/blossom-without-bg.png)
 # Blossom
 
+English | [Русский](README_RU.md)
+
 Blossom is a powerful plugin designed to regenerate arenas and regions (large collections of blocks) at blazing speeds with minimal impact on server performance. It is modern, lightweight, and easy to use, featuring a menu-based interface. Blossom utilizes FastAsyncWorldEdit for efficient arena regeneration.
 
 ***
